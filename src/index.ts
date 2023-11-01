@@ -1,9 +1,17 @@
-import { Elysia } from "elysia";
-import { Routes } from "./controller/test";
+import { Elysia,t } from "elysia";
+import { Routes,db } from "./controller/test";
 import {testing,plugin} from './controller/test2'
 // const routes = new Routes()
 const elysia = Elysia
-const app = new elysia().use(testing)
+const app = new elysia().get('/db-try',({body})=>{
+   const message:string = 'This is a test'
+  
+return db(message)
+
+
+}).get('/test',()=>'Workingx').route('db','/testing',()=>{
+
+})
 const PORT  = process.env.PORT || 3000
 
 app.listen(PORT)
